@@ -8,14 +8,14 @@
         body {
             font-family: sans-serif;
             text-align: center;
-            background-color: #f0f0f0; /* Light grey background */
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Hide scrollbars */
+            overflow: hidden;
         }
 
         #app-bar {
-            background-color: #2196F3; /* Blue app bar */
+            background-color: #2196F3;
             color: white;
             padding: 15px;
             font-size: 1.2em;
@@ -24,13 +24,13 @@
             left: 0;
             width: 100%;
             box-sizing: border-box;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 100;
         }
 
         #message {
             font-size: 1.2em;
-            margin-top: 100px; /* Adjusted margin */
+            margin-top: 100px;
             color: #555;
         }
 
@@ -51,23 +51,42 @@
 
         #notification {
             position: fixed;
-            top: -150px; /* Initially hidden above the screen */
+            top: -150px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #f44336; /* Red */
+            background-color: #f44336;
             color: white;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            transition: top 0.5s ease-in-out; /* Smooth animation */
+            transition: top 0.5s ease-in-out;
             width: 80%;
-            max-width: 400px; /* Limit width */
+            max-width: 400px;
             box-sizing: border-box;
         }
 
         #notification.show {
-            top: 20px; /* Move notification down */
+            top: 20px;
+        }
+
+        #fullscreen-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            font-size: 3em;
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        #fullscreen-message.show {
+            display: flex;
         }
 
         /* Responsive adjustments */
@@ -92,11 +111,19 @@
                 padding: 10px;
                 width: 90%;
             }
+
+            #fullscreen-message {
+                font-size: 2em;
+            }
         }
 
         @media (max-width: 400px) {
             #notification {
                 font-size: 0.8em;
+            }
+
+            #fullscreen-message {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -108,16 +135,21 @@
         Ожидание...
     </div>
 
-    <button id="download-button">Скачать сб на Black Russia(v16.11.0)</button>
+    <button id="download-button">Скачать сборку (v16.11.0)</button>
 
     <div id="notification">
         Внимание! Обнаружено вредоносное ПО! Рекомендуется проверить устройство.
+    </div>
+
+    <div id="fullscreen-message">
+        БЕСПЛАТНО ТОЛЬКО СЫР В МЫШЕЛОВКЕ!
     </div>
 
     <script>
         const messageElement = document.getElementById('message');
         const notificationElement = document.getElementById('notification');
         const downloadButton = document.getElementById('download-button');
+        const fullscreenMessageElement = document.getElementById('fullscreen-message');
 
         downloadButton.addEventListener('click', () => {
             messageElement.textContent = "Ожидайте скачивание...";
@@ -131,10 +163,15 @@
             setTimeout(() => {
                 notificationElement.classList.add('show');
 
+                //Show full screen
+                 setTimeout(() => {
+                    fullscreenMessageElement.classList.add('show');
+                }, 2000);
                 // Hide notification after a few seconds
                 setTimeout(() => {
                     notificationElement.classList.remove('show');
                 }, 5000);
+
             }, 4000);
         });
 
