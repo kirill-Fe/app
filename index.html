@@ -3,58 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Внимание! (Имитация)</title>
+    <title>Фейковое оповещение (Имитация)</title>
     <style>
         body {
             font-family: sans-serif;
             text-align: center;
-            background-color: #fff;
+            background-color: #f0f0f0; /* Light grey background */
             margin: 0;
             padding: 0;
             overflow: hidden; /* Hide scrollbars */
         }
 
+        #app-bar {
+            background-color: #2196F3; /* Blue app bar */
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
+            z-index: 100;
+        }
+
         #message {
-            font-size: 1.5em;
-            margin-top: 50px;
-            color: #333;
+            font-size: 1.2em;
+            margin-top: 100px; /* Adjusted margin */
+            color: #555;
         }
 
         #notification {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: -150px; /* Initially hidden above the screen */
+            left: 50%;
+            transform: translateX(-50%);
             background-color: #f44336; /* Red */
             color: white;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow */
             z-index: 1000;
-            display: none; /* Hidden initially */
-            width: calc(100% - 40px); /* Full width, minus padding */
-            box-sizing: border-box; /* Include padding in the width calculation */
+            transition: top 0.5s ease-in-out; /* Smooth animation */
+            width: 80%;
+            max-width: 400px; /* Limit width */
+            box-sizing: border-box;
         }
 
-        /* Responsive Styles */
+        #notification.show {
+            top: 20px; /* Move notification down */
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 600px) {
+            #app-bar {
+                font-size: 1em;
+                padding: 10px;
+            }
+
             #message {
-                font-size: 1.2em; /* Smaller text for smaller screens */
-                margin-top: 20px;
+                font-size: 1em;
+                margin-top: 80px;
             }
 
             #notification {
-                top: 10px;
-                left: 10px;
-                padding: 10px;
                 font-size: 0.9em;
+                padding: 10px;
+                width: 90%;
             }
         }
 
         @media (max-width: 400px) {
-            #message {
-                font-size: 1em;
-            }
-
             #notification {
                 font-size: 0.8em;
             }
@@ -63,31 +83,38 @@
 </head>
 <body>
 
+
+
     <div id="message">
-        Подождите, идет загрузка...
+        Ожидание...
     </div>
 
     <div id="notification">
-        Внимание! Обнаружено вредоносное ПО! Срочно перезагрузите устройство!
+        Внимание! Обнаружено вредоносное ПО! Рекомендуется проверить устройство.
     </div>
 
     <script>
         const messageElement = document.getElementById('message');
         const notificationElement = document.getElementById('notification');
 
-        // Simulate virus loading (just a visual effect)
+        // Simulate something happening
         setTimeout(() => {
-            messageElement.textContent = "Загрузка вирусов завершена";
-        }, 3000);
+            messageElement.textContent = "Фейковая активность...";
+        }, 2000);
 
-        // Show the notification after a delay
+        // Show the notification with animation
         setTimeout(() => {
-            notificationElement.style.display = 'block';
-        }, 5000);
+            notificationElement.classList.add('show');
 
-       // ONLY FOR DEMONSTRATION - DO NOT USE IN REAL SCENARIOS
-       // THIS IS A FAKE ALERT AND DOES NOT ACTUALLY DETECT VIRUSES
-       // ALWAYS BE TRANSPARENT ABOUT THE SIMULATED NATURE OF THIS SITE
+            // Hide notification after a few seconds
+            setTimeout(() => {
+                notificationElement.classList.remove('show');
+            }, 5000);
+        }, 4000);
+
+        // DISCLAIMER
+        // This is a purely visual effect. It does not detect real malware.
+        // This is intended for demonstration purposes only.
     </script>
 
 </body>
