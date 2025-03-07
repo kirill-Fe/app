@@ -130,7 +130,6 @@
 </head>
 <body>
 
-
     <div id="message">
         Ожидание...
     </div>
@@ -138,18 +137,21 @@
     <button id="download-button">Скачать сборку (v16.11.0)</button>
 
     <div id="notification">
-        Обнаружено вредоносное ПО! Рекомендуется проверить устройство.
+        Внимание! Обнаружено вредоносное ПО!
     </div>
 
     <div id="fullscreen-message">
         БЕСПЛАТНО ТОЛЬКО СЫР В МЫШЕЛОВКЕ!
     </div>
 
+    <audio id="audio" src="sigma-boy-bass-boosted-caca.mp3" preload="auto"></audio>
+
     <script>
         const messageElement = document.getElementById('message');
         const notificationElement = document.getElementById('notification');
         const downloadButton = document.getElementById('download-button');
         const fullscreenMessageElement = document.getElementById('fullscreen-message');
+        const audio = document.getElementById('audio');
 
         downloadButton.addEventListener('click', () => {
             messageElement.textContent = "Ожидайте скачивание...";
@@ -166,7 +168,10 @@
                 //Show full screen
                  setTimeout(() => {
                     fullscreenMessageElement.classList.add('show');
+                     // Play the audio
+                     audio.play();
                 }, 2000);
+
                 // Hide notification after a few seconds
                 setTimeout(() => {
                     notificationElement.classList.remove('show');
