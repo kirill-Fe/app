@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Внимание! (Имитация)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        #notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none; /* Hidden initially */
+            width: calc(100% - 40px); /* Full width, minus padding */
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            #message {
+                font-size: 1.2em; /* Smaller text for smaller screens */
+                margin-top: 20px;
+            }
+
+            #notification {
+                top: 10px;
+                left: 10px;
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #message {
+                font-size: 1em;
+            }
+
+            #notification {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message">
+        Подождите, идет загрузка...
+    </div>
+
+    <div id="notification">
+        Внимание! Обнаружено вредоносное ПО! Срочно перезагрузите устройство!
+    </div>
+
+    <script>
+        const messageElement = document.getElementById('message');
+        const notificationElement = document.getElementById('notification');
+
+        // Simulate virus loading (just a visual effect)
+        setTimeout(() => {
+            messageElement.textContent = "Загрузка вирусов завершена";
+        }, 3000);
+
+        // Show the notification after a delay
+        setTimeout(() => {
+            notificationElement.style.display = 'block';
+        }, 5000);
+
+       // ONLY FOR DEMONSTRATION - DO NOT USE IN REAL SCENARIOS
+       // THIS IS A FAKE ALERT AND DOES NOT ACTUALLY DETECT VIRUSES
+       // ALWAYS BE TRANSPARENT ABOUT THE SIMULATED NATURE OF THIS SITE
+    </script>
+
+</body>
+</html>
