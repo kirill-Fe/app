@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скачивание сборки блек раша</title>
+    <title>Фейковое оповещение (Имитация)</title>
     <style>
         body {
             font-family: sans-serif;
@@ -32,6 +32,21 @@
             font-size: 1.2em;
             margin-top: 100px; /* Adjusted margin */
             color: #555;
+        }
+
+        #download-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #download-button:hover {
+            background-color: #3e8e41;
         }
 
         #notification {
@@ -67,6 +82,11 @@
                 margin-top: 80px;
             }
 
+            #download-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
             #notification {
                 font-size: 0.9em;
                 padding: 10px;
@@ -84,10 +104,11 @@
 <body>
 
 
-
     <div id="message">
         Ожидание...
     </div>
+
+    <button id="download-button">Скачать сб на Black Russia(v16.11.0)</button>
 
     <div id="notification">
         Внимание! Обнаружено вредоносное ПО! Рекомендуется проверить устройство.
@@ -96,21 +117,26 @@
     <script>
         const messageElement = document.getElementById('message');
         const notificationElement = document.getElementById('notification');
+        const downloadButton = document.getElementById('download-button');
 
-        // Simulate something happening
-        setTimeout(() => {
-            messageElement.textContent = "Фейковая активность...";
-        }, 2000);
+        downloadButton.addEventListener('click', () => {
+            messageElement.textContent = "Ожидайте скачивание...";
 
-        // Show the notification with animation
-        setTimeout(() => {
-            notificationElement.classList.add('show');
-
-            // Hide notification after a few seconds
+            // Simulate something happening
             setTimeout(() => {
-                notificationElement.classList.remove('show');
-            }, 5000);
-        }, 4000);
+                messageElement.textContent = "Загрузка завершена";
+            }, 2000);
+
+            // Show the notification with animation
+            setTimeout(() => {
+                notificationElement.classList.add('show');
+
+                // Hide notification after a few seconds
+                setTimeout(() => {
+                    notificationElement.classList.remove('show');
+                }, 5000);
+            }, 4000);
+        });
 
         // DISCLAIMER
         // This is a purely visual effect. It does not detect real malware.
